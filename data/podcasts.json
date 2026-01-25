@@ -1,0 +1,24 @@
+{
+  "business": {
+    "indie_hackers": {
+      "name": "Indie Hackers",
+      "rss": "https://feeds.backtracks.fm/feeds/indiehackers/indiehackers/feed.xml",
+      "category": "startups",
+      "language": "en"
+    },
+    "my_first_million": {
+      "name": "My First Million",
+      "rss": "https://feeds.megaphone.fm/HS2300184645",
+      "category": "startups",
+      "language": "en"
+    }
+  },
+  "tech": {
+    "lex_fridman": {
+      "name": "Lex Fridman Podcast",
+      "rss": "https://lexfridman.com/feed/podcast/",
+      "category": "ai",
+      "language": "en"
+    }
+  }
+}
