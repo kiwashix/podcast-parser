@@ -56,7 +56,7 @@ def fetch_new_episodes():
             
             try:
                 # Пауза между запросами (важно!)
-                time.sleep(2)
+                time.sleep(3)
                 
                 # Fetch RSS
                 response = session.get(
@@ -84,6 +84,7 @@ def fetch_new_episodes():
                 # Обработка первых 5 эпизодов (для теста)
                 for entry in feed.entries[:5]:
                     episode = {
+
                         'podcast_id': podcast_id,
                         'podcast_name': podcast_data['name'],
                         'category': podcast_data['category'],

@@ -19,6 +19,12 @@
       "rss": "https://lexfridman.com/feed/podcast/",
       "category": "ai",
       "language": "en"
+    },
+    "hard_fork": {
+    "name": "Hard Fork",
+    "rss": "https://feeds.simplecast.com/l2i9YnTd",
+    "category": "tech",
+    "language": "en"
     }
   }
 }

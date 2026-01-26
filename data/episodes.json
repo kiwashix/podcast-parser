@@ -98,5 +98,55 @@
     "description": "<p>David Kirtley is a nuclear fusion engineer and CEO of Helion Energy, a company working on building the world&#8217;s first commercial fusion power plant by 2028.<br />\nThank you for listening ❤ Che",
     "audio_url": "https://media.blubrry.com/takeituneasy/ins.blubrry.com/takeituneasy/lex_ai_david_kirtley.mp3",
     "duration": null
+  },
+  {
+    "podcast_id": "hard_fork",
+    "podcast_name": "Hard Fork",
+    "category": "tech",
+    "title": "Will ChatGPT Ads Change OpenAI? + Amanda Askell Explains Claude's New Constitution",
+    "published": "Fri, 23 Jan 2026 12:00:00 +0000",
+    "description": "“The question is not are these first couple of ads that we're seeing from OpenAI going to be good or not? It's whether two or three years from now, ChatGPT is being steered toward ad-friendly topics.”",
+    "audio_url": "https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/p/nyt.simplecastaudio.com/3e43d072-f8a5-430f-bc8e-4c70aafdf3c7/episodes/885ea700-b0df-44b5-9c89-3489c1668d8e/audio/128/default.mp3?aid=rss_feed&awCollectionId=3e43d072-f8a5-430f-bc8e-4c70aafdf3c7&awEpisodeId=885ea700-b0df-44b5-9c89-3489c1668d8e&feed=l2i9YnTd",
+    "duration": "01:13:40"
+  },
+  {
+    "podcast_id": "hard_fork",
+    "podcast_name": "Hard Fork",
+    "category": "tech",
+    "title": "Jonathan Haidt Strikes Again + What You Vibecoded + An Update on the Forkiverse",
+    "published": "Fri, 16 Jan 2026 12:00:00 +0000",
+    "description": "“If we can’t win on social media, then we definitely can’t win on A.I.,” says Haidt.",
+    "audio_url": "https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/p/nyt.simplecastaudio.com/3e43d072-f8a5-430f-bc8e-4c70aafdf3c7/episodes/6505c92d-5870-4a8f-84ce-ea0d3b4e9424/audio/128/default.mp3?aid=rss_feed&awCollectionId=3e43d072-f8a5-430f-bc8e-4c70aafdf3c7&awEpisodeId=6505c92d-5870-4a8f-84ce-ea0d3b4e9424&feed=l2i9YnTd",
+    "duration": "01:14:29"
+  },
+  {
+    "podcast_id": "hard_fork",
+    "podcast_name": "Hard Fork",
+    "category": "tech",
+    "title": "Can We Build a Better Social Network?",
+    "published": "Tue, 13 Jan 2026 12:00:00 +0000",
+    "description": "A “Hard Fork” and “Search Engine” collaboration.",
+    "audio_url": "https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/p/nyt.simplecastaudio.com/3e43d072-f8a5-430f-bc8e-4c70aafdf3c7/episodes/4eeb6cfc-2a85-471f-8ee7-50cc20be17ca/audio/128/default.mp3?aid=rss_feed&awCollectionId=3e43d072-f8a5-430f-bc8e-4c70aafdf3c7&awEpisodeId=4eeb6cfc-2a85-471f-8ee7-50cc20be17ca&feed=l2i9YnTd",
+    "duration": "00:40:48"
+  },
+  {
+    "podcast_id": "hard_fork",
+    "podcast_name": "Hard Fork",
+    "category": "tech",
+    "title": "Grok’s Undressing Scandal + Claude Code Capers + Casey Busts a Reddit Hoax",
+    "published": "Fri, 9 Jan 2026 12:00:00 +0000",
+    "description": "“This is a story about how a tool can be used to try to affect politics and in particular to minimize women, denigrate them and push them out of the conversation.”",
+    "audio_url": "https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/p/nyt.simplecastaudio.com/3e43d072-f8a5-430f-bc8e-4c70aafdf3c7/episodes/1c13b646-d7d4-4f39-9740-f51da85dd9ff/audio/128/default.mp3?aid=rss_feed&awCollectionId=3e43d072-f8a5-430f-bc8e-4c70aafdf3c7&awEpisodeId=1c13b646-d7d4-4f39-9740-f51da85dd9ff&feed=l2i9YnTd",
+    "duration": "01:16:15"
+  },
+  {
+    "podcast_id": "hard_fork",
+    "podcast_name": "Hard Fork",
+    "category": "tech",
+    "title": "Our 2026 Tech Resolutions + We Answer Your Questions",
+    "published": "Fri, 2 Jan 2026 12:00:00 +0000",
+    "description": "“When we came into the studio last year to record our resolutions, I had the best of intentions.”",
+    "audio_url": "https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/p/nyt.simplecastaudio.com/3e43d072-f8a5-430f-bc8e-4c70aafdf3c7/episodes/be5f3ef3-c66b-4883-a7b9-8b1f00dc345f/audio/128/default.mp3?aid=rss_feed&awCollectionId=3e43d072-f8a5-430f-bc8e-4c70aafdf3c7&awEpisodeId=be5f3ef3-c66b-4883-a7b9-8b1f00dc345f&feed=l2i9YnTd",
+    "duration": "00:59:03"
   }
 ]
