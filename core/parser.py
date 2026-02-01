@@ -113,7 +113,7 @@ def fetch_new_episodes():
 
                         new_episodes.append(episode)
                         DB.save_episode(podcast_id=podcast_id, podcast_title=episode['title'],
-                                        category=episode['category'], published=episode['published'],
+                                        category=episode['category'], published=False,
                                         audio_url=episode['audio_url'], duration=episode['duration'])
                     
                         # Вывод для дебага
@@ -130,6 +130,3 @@ def fetch_new_episodes():
     
     print(f"\n\n📊 Total episodes fetched: {len(new_episodes)}")
     return new_episodes
-
-if __name__ == "__main__":
-    episodes = fetch_new_episodes()

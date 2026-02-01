@@ -51,6 +51,3 @@ def create_episode_image(episode_title: str, podcast_name: str) -> str:
     output = f"images/{episode_title[:20].replace('?', '')}.png"  # Убрал "?" для имени файла
     img.save(output)
     return output
-
-# Пример вызова
-create_episode_image("Is AI gonna really take us to the Moon?", "Bullshit Generator")

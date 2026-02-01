@@ -11,6 +11,7 @@ def transcribe_audio(audio_path: str) -> str:
     """"
         Transcribes EN audio
     """
+    
     model = whisper.load_model('base.en')
 
     result = model.transcribe(
