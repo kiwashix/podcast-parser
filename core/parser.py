@@ -6,6 +6,7 @@ import time
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import urllib3
+from data.database import DB
 
 # Отключаем предупреждения SSL (только для разработки!)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -81,8 +82,8 @@ def fetch_new_episodes():
                 
                 print(f"   ✅ Success: {len(feed.entries)} episodes")
                 
-                # Обработка первых 5 эпизодов (для теста)
-                for entry in feed.entries[:5]:
+                # Обработка первых 10 эпизодов
+                for entry in feed.entries[:10]:
                     episode = {
 
                         'podcast_id': podcast_id,
@@ -108,10 +109,15 @@ def fetch_new_episodes():
                     if hasattr(entry, 'itunes_duration'):
                         episode['duration'] = entry.itunes_duration
                     
-                    new_episodes.append(episode)
+                    if not DB.episode_exist(podcast_id=episode['podcast_id'], podcast_title=episode['title']):
+
+                        new_episodes.append(episode)
+                        DB.save_episode(podcast_id=podcast_id, podcast_title=episode['title'],
+                                        category=episode['category'], published=episode['published'],
+                                        audio_url=episode['audio_url'], duration=episode['duration'])
                     
-                    # Вывод для дебага
-                    print(f"      • {entry.title[:60]}...")
+                        # Вывод для дебага
+                        print(f"      • {entry.title[:60]}...")
                 
             except requests.exceptions.HTTPError as e:
                 print(f"   ❌ HTTP Error: {e}")
@@ -123,11 +129,6 @@ def fetch_new_episodes():
                 print(f"   ❌ Unexpected error: {type(e).__name__}: {e}")
     
     print(f"\n\n📊 Total episodes fetched: {len(new_episodes)}")
-    
-    # Сохраняем результат
-    with open('./data/episodes.json', 'w', encoding='utf-8') as f:
-        json.dump(new_episodes, f, indent=2, ensure_ascii=False)
-    
     return new_episodes
 
 if __name__ == "__main__":
