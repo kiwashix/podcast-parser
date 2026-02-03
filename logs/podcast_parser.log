@@ -1,0 +1,232 @@
+2026-02-02 14:29:22 | INFO     | utils.logger | Logging initialized at level INFO
+2026-02-02 14:29:22 | INFO     | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-02 14:29:22 | INFO     | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-02 14:29:22 | INFO     | apscheduler.scheduler | Added job "Episodes Fetcher" to job store "default"
+2026-02-02 14:29:22 | INFO     | apscheduler.scheduler | Added job "Telegram Episodes Poster" to job store "default"
+2026-02-02 14:29:22 | INFO     | apscheduler.scheduler | Scheduler started
+2026-02-02 14:29:22 | INFO     | __main__ | Scheduler started successfully
+2026-02-02 14:29:22 | INFO     | __main__ | Jobs scheduled: daily_pipeline, 12h_pipeline
+2026-02-02 14:29:29 | INFO     | __main__ | Received shutdown signal, stopping scheduler...
+2026-02-02 14:29:29 | INFO     | apscheduler.scheduler | Scheduler has been shut down
+2026-02-02 14:29:29 | INFO     | __main__ | Scheduler stopped gracefully
+2026-02-03 16:20:12 | INFO     | utils.logger | Logging initialized at level INFO
+2026-02-03 16:20:12 | INFO     | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-03 16:20:12 | INFO     | apscheduler.scheduler | Added job "Daily Episode Processing" to job store "default"
+2026-02-03 16:20:12 | INFO     | apscheduler.scheduler | Scheduler started
+2026-02-03 16:20:12 | INFO     | __main__ | Scheduler started successfully
+2026-02-03 16:20:12 | INFO     | __main__ | Total jobs scheduled: 1
+2026-02-03 16:20:12 | INFO     | __main__ | Job: daily_pipeline - Daily Episode Processing - Next run: 2026-02-03 21:00:00+03:00
+2026-02-03 16:20:12 | INFO     | __main__ | Application is running. Press Ctrl+C to stop.
+2026-02-03 16:20:12 | INFO     | core.parser | Starting fetch new episodes...
+2026-02-03 16:20:12 | INFO     | core.parser | Starting to fetch new episodes from RSS feeds
+2026-02-03 16:20:12 | INFO     | core.parser | Loaded 2 podcast categories
+2026-02-03 16:20:12 | INFO     | core.parser | Processing category: business
+2026-02-03 16:20:12 | INFO     | core.parser | Fetching podcast: Indie Hackers
+2026-02-03 16:20:17 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:20:21 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:20:27 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:20:29 | ERROR    | core.parser | Connection Error fetching Indie Hackers: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 86, in fetch_new_episodes
+    response = session.get(
+               ^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+2026-02-03 16:20:29 | INFO     | core.parser | Fetching podcast: My First Million
+2026-02-03 16:20:38 | INFO     | core.parser | Found 831 episodes in My First Million
+2026-02-03 16:20:39 | INFO     | core.parser | Added 10 new episodes from My First Million
+2026-02-03 16:20:39 | INFO     | core.parser | Processing category: tech
+2026-02-03 16:20:39 | INFO     | core.parser | Fetching podcast: Lex Fridman Podcast
+2026-02-03 16:20:44 | INFO     | core.parser | Found 491 episodes in Lex Fridman Podcast
+2026-02-03 16:20:44 | ERROR    | core.parser | Unexpected error fetching Lex Fridman Podcast: IntegrityError: NOT NULL constraint failed: episodes.duration
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 138, in fetch_new_episodes
+    DB.save_episode(podcast_id=podcast_id, podcast_name=podcast_name, podcast_title=episode['title'],
+  File "d:\Utilities\VS Code\Projects\podcast-parser\data\database.py", line 48, in save_episode
+    cur.execute("""
+sqlite3.IntegrityError: NOT NULL constraint failed: episodes.duration
+2026-02-03 16:20:44 | INFO     | core.parser | Fetching podcast: Hard Fork
+2026-02-03 16:20:50 | INFO     | core.parser | Found 179 episodes in Hard Fork
+2026-02-03 16:20:51 | INFO     | core.parser | Added 10 new episodes from Hard Fork
+2026-02-03 16:20:51 | INFO     | core.parser | Total new episodes fetched: 21
+2026-02-03 16:20:51 | INFO     | core.parser | Completed fetch new episodes in 39370.73ms
+2026-02-03 16:20:51 | INFO     | __main__ | Starting main pipeline...
+2026-02-03 16:20:51 | INFO     | __main__ | Starting main pipeline
+2026-02-03 16:20:51 | INFO     | __main__ | Processing episode: Will ChatGPT Ads Change OpenAI? + Amanda Askell Explains Claude's New Constitution
+2026-02-03 16:54:12 | INFO     | utils.logger | Logging initialized at level INFO
+2026-02-03 16:54:12 | INFO     | __main__ | ============================================================
+2026-02-03 16:54:12 | INFO     | __main__ | Testing proxies on startup...
+2026-02-03 16:54:12 | INFO     | __main__ | ============================================================
+2026-02-03 16:54:12 | INFO     | utils.proxy_manager | Testing up to 20 proxies...
+2026-02-03 16:55:35 | INFO     | utils.proxy_manager | Found 0 working proxies out of 20 tested
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-03 16:55:35 | INFO     | apscheduler.scheduler | Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-03 16:55:35 | INFO     | apscheduler.scheduler | Added job "Daily Episode Fetching" to job store "default"
+2026-02-03 16:55:35 | INFO     | apscheduler.scheduler | Added job "Daily Episode Processing" to job store "default"
+2026-02-03 16:55:35 | INFO     | apscheduler.scheduler | Scheduler started
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ | ╔══════════════════════════════════════════════════════════╗
+2026-02-03 16:55:35 | INFO     | __main__ | ║            PODCAST BOT SCHEDULER STARTED                 ║
+2026-02-03 16:55:35 | INFO     | __main__ | ╚══════════════════════════════════════════════════════════╝
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ | 📅 Total jobs scheduled: 2
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ |   📌 Job ID: daily_fetch
+2026-02-03 16:55:35 | INFO     | __main__ |      Name: Daily Episode Fetching
+2026-02-03 16:55:35 | INFO     | __main__ |      Next run: 2026-02-03 20:00:00+03:00
+2026-02-03 16:55:35 | INFO     | __main__ |      Schedule: cron[hour='8,14,20', minute='0']
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ |   📌 Job ID: daily_pipeline
+2026-02-03 16:55:35 | INFO     | __main__ |      Name: Daily Episode Processing
+2026-02-03 16:55:35 | INFO     | __main__ |      Next run: 2026-02-03 21:00:00+03:00
+2026-02-03 16:55:35 | INFO     | __main__ |      Schedule: cron[hour='9,15,21', minute='0']
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ | ============================================================
+2026-02-03 16:55:35 | INFO     | __main__ | 🚀 Application is running
+2026-02-03 16:55:35 | INFO     | __main__ | ⏰ Schedule:
+2026-02-03 16:55:35 | INFO     | __main__ |    📥 Fetch episodes: 08:00, 14:00, 20:00
+2026-02-03 16:55:35 | INFO     | __main__ |    ⚙️  Process episodes: 09:00, 15:00, 21:00
+2026-02-03 16:55:35 | INFO     | __main__ | 🛑 Press Ctrl+C to stop
+2026-02-03 16:55:35 | INFO     | __main__ | ============================================================
+2026-02-03 16:55:35 | INFO     | __main__ | 
+2026-02-03 16:55:35 | INFO     | __main__ | ▶ Running initial test execution...
+2026-02-03 16:55:35 | INFO     | __main__ | Starting episode fetching...
+2026-02-03 16:55:35 | INFO     | __main__ | ============================================================
+2026-02-03 16:55:35 | INFO     | __main__ | Starting episode fetch at 2026-02-03 16:55:35
+2026-02-03 16:55:35 | INFO     | __main__ | ============================================================
+2026-02-03 16:55:35 | INFO     | core.parser | Starting fetch new episodes...
+2026-02-03 16:55:35 | INFO     | core.parser | Starting to fetch new episodes from RSS feeds
+2026-02-03 16:55:35 | INFO     | core.parser | Loaded 2 podcast categories
+2026-02-03 16:55:35 | INFO     | core.parser | Processing category: business
+2026-02-03 16:55:35 | INFO     | core.parser | Fetching podcast: Indie Hackers
+2026-02-03 16:55:43 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:55:51 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:55:59 | WARNING  | urllib3.connectionpool | Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')': /feeds/indiehackers/indiehackers/feed.xml
+2026-02-03 16:56:04 | ERROR    | core.parser | Connection Error fetching Indie Hackers: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 86, in fetch_new_episodes
+    response = session.get(
+               ^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+2026-02-03 16:56:04 | INFO     | core.parser | Fetching podcast: My First Million
+2026-02-03 16:56:11 | INFO     | core.parser | Found 831 episodes in My First Million
+2026-02-03 16:56:11 | INFO     | core.parser | Added 0 new episodes from My First Million
+2026-02-03 16:56:11 | INFO     | core.parser | Processing category: tech
+2026-02-03 16:56:11 | INFO     | core.parser | Fetching podcast: Lex Fridman Podcast
+2026-02-03 16:56:21 | INFO     | core.parser | Found 491 episodes in Lex Fridman Podcast
+2026-02-03 16:56:21 | ERROR    | core.parser | Unexpected error fetching Lex Fridman Podcast: IntegrityError: NOT NULL constraint failed: episodes.duration
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 138, in fetch_new_episodes
+    DB.save_episode(podcast_id=podcast_id, podcast_name=podcast_name, podcast_title=episode['title'],
+  File "d:\Utilities\VS Code\Projects\podcast-parser\data\database.py", line 48, in save_episode
+    cur.execute("""
+sqlite3.IntegrityError: NOT NULL constraint failed: episodes.duration
+2026-02-03 16:56:21 | INFO     | core.parser | Fetching podcast: Hard Fork
+2026-02-03 16:56:25 | INFO     | core.parser | Found 179 episodes in Hard Fork
+2026-02-03 16:56:25 | INFO     | core.parser | Added 0 new episodes from Hard Fork
+2026-02-03 16:56:25 | INFO     | core.parser | Total new episodes fetched: 1
+2026-02-03 16:56:25 | INFO     | core.parser | Completed fetch new episodes in 50343.80ms
+2026-02-03 16:56:25 | INFO     | __main__ | ============================================================
+2026-02-03 16:56:25 | INFO     | __main__ | ✓ Episode fetch completed successfully
+2026-02-03 16:56:25 | INFO     | __main__ | ============================================================
+2026-02-03 16:56:25 | INFO     | __main__ | Completed episode fetching in 50344.80ms
+2026-02-03 16:56:25 | INFO     | __main__ | Starting main pipeline...
+2026-02-03 16:56:25 | INFO     | __main__ | ============================================================
+2026-02-03 16:56:25 | INFO     | __main__ | Starting main pipeline at 2026-02-03 16:56:25
+2026-02-03 16:56:25 | INFO     | __main__ | ============================================================
+2026-02-03 16:56:25 | INFO     | __main__ | 📝 Processing episode: 'Where Is All the A.I.-Driven Scientific Progress?'
+2026-02-03 16:56:25 | INFO     | __main__ |    Podcast: Hard Fork
+2026-02-03 16:56:25 | INFO     | __main__ |    Category: tech
+2026-02-03 16:56:25 | INFO     | __main__ |    Duration: 00:39:28
+2026-02-03 16:56:25 | INFO     | __main__ |    Episode ID: 18
+2026-02-03 16:56:25 | INFO     | __main__ | ⬇ Downloading from: https://dts.podtrac.com/redirect.mp3/pdst.fm/e/pfx.vpixl.com/6qj4J/pscrb.fm/rss/...
+2026-02-03 16:56:25 | WARNING  | utils.proxy_manager | No working proxies available, trying to find some...
+2026-02-03 16:56:25 | INFO     | utils.proxy_manager | Testing up to 20 proxies...
+2026-02-03 16:57:10 | INFO     | utils.proxy_manager | Found 0 working proxies out of 20 tested
+2026-02-03 16:57:10 | ERROR    | utils.proxy_manager | Could not find any working proxies
+2026-02-03 16:57:10 | WARNING  | core.audio_processor | No working proxies available, downloading without proxy
+2026-02-03 16:57:31 | INFO     | core.audio_processor | Starting download: 38.05 MB
+2026-02-03 16:57:31 | ERROR    | core.audio_processor | Unexpected error during download: [Errno 22] Invalid argument: 'downloads/Where Is All the A.I.-Driven Scientific Progress?.mp3'
+2026-02-03 16:57:31 | WARNING  | __main__ | ✗ Download attempt 1 failed: OSError: [Errno 22] Invalid argument: 'downloads/Where Is All the A.I.-Driven Scientific Progress?.mp3'
+2026-02-03 16:57:31 | INFO     | __main__ | ⏳ Retrying in 10 seconds...
+2026-02-03 16:57:40 | INFO     | __main__ | ============================================================
+2026-02-03 16:57:40 | INFO     | __main__ | Received shutdown signal, stopping scheduler...
+2026-02-03 16:57:40 | INFO     | apscheduler.scheduler | Scheduler has been shut down
+2026-02-03 16:57:40 | INFO     | __main__ | Scheduler stopped gracefully
+2026-02-03 16:57:40 | INFO     | __main__ | ============================================================

@@ -1,0 +1,104 @@
+2026-02-03 16:20:29 | ERROR    | core.parser | Connection Error fetching Indie Hackers: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 86, in fetch_new_episodes
+    response = session.get(
+               ^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+2026-02-03 16:20:44 | ERROR    | core.parser | Unexpected error fetching Lex Fridman Podcast: IntegrityError: NOT NULL constraint failed: episodes.duration
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 138, in fetch_new_episodes
+    DB.save_episode(podcast_id=podcast_id, podcast_name=podcast_name, podcast_title=episode['title'],
+  File "d:\Utilities\VS Code\Projects\podcast-parser\data\database.py", line 48, in save_episode
+    cur.execute("""
+sqlite3.IntegrityError: NOT NULL constraint failed: episodes.duration
+2026-02-03 16:56:04 | ERROR    | core.parser | Connection Error fetching Indie Hackers: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 86, in fetch_new_episodes
+    response = session.get(
+               ^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilities\VS Code\Projects\podcast-parser\venv\Lib\site-packages\requests\adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='feeds.backtracks.fm', port=443): Max retries exceeded with url: /feeds/indiehackers/indiehackers/feed.xml (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+2026-02-03 16:56:21 | ERROR    | core.parser | Unexpected error fetching Lex Fridman Podcast: IntegrityError: NOT NULL constraint failed: episodes.duration
+Traceback (most recent call last):
+  File "d:\Utilities\VS Code\Projects\podcast-parser\core\parser.py", line 138, in fetch_new_episodes
+    DB.save_episode(podcast_id=podcast_id, podcast_name=podcast_name, podcast_title=episode['title'],
+  File "d:\Utilities\VS Code\Projects\podcast-parser\data\database.py", line 48, in save_episode
+    cur.execute("""
+sqlite3.IntegrityError: NOT NULL constraint failed: episodes.duration
+2026-02-03 16:57:10 | ERROR    | utils.proxy_manager | Could not find any working proxies
+2026-02-03 16:57:31 | ERROR    | core.audio_processor | Unexpected error during download: [Errno 22] Invalid argument: 'downloads/Where Is All the A.I.-Driven Scientific Progress?.mp3'

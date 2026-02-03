@@ -7,12 +7,17 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import urllib3
 from data.database import DB
+from utils.logger import get_logger, log_execution_time
+
+# Get module logger
+logger = get_logger(__name__)
 
 # Отключаем предупреждения SSL (только для разработки!)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def create_session():
     """Create requests session with retry logic and browser-like headers"""
+    logger.debug("Creating HTTP session with retry strategy")
     session = requests.Session()
     
     # Retry стратегия
@@ -36,59 +41,78 @@ def create_session():
         'Cache-Control': 'no-cache',
     })
     
+    logger.debug("HTTP session created successfully")
     return session
 
 def load_podcasts_feeds():
     """Load podcasts.json data"""
-    with open('./data/podcasts.json', 'r') as f:
-        return json.load(f)
+    logger.debug("Loading podcasts feeds from podcasts.json")
+    try:
+        with open('./data/podcasts.json', 'r') as f:
+            feeds = json.load(f)
+        logger.info(f"Loaded {len(feeds)} podcast categories")
+        return feeds
+    except FileNotFoundError:
+        logger.error("podcasts.json file not found")
+        raise
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in podcasts.json: {e}")
+        raise
 
+@log_execution_time(logger, "fetch new episodes")
 def fetch_new_episodes():
     """Fetch new episodes from RSS feeds"""
+    logger.info("Starting to fetch new episodes from RSS feeds")
     feeds = load_podcasts_feeds()
     new_episodes = []
     session = create_session()
     
     for category, podcasts in feeds.items():
-        print(f"\n📂 Category: {category}")
+        logger.info(f"Processing category: {category}")
         
         for podcast_id, podcast_data in podcasts.items():
-            print(f"\n🎙️  Fetching: {podcast_data['name']}")
+            podcast_name = podcast_data['name']
+            logger.info(f"Fetching podcast: {podcast_name}", extra={
+                "podcast_id": podcast_id,
+                "category": category
+            })
             
             try:
                 # Пауза между запросами (важно!)
                 time.sleep(3)
                 
                 # Fetch RSS
+                logger.debug(f"Requesting RSS feed: {podcast_data['rss']}")
                 response = session.get(
                     podcast_data['rss'], 
                     verify=False,  # В продакшене убрать!
                     timeout=15
                 )
                 response.raise_for_status()
+                logger.debug(f"RSS feed response: {response.status_code}")
                 
                 # Parse feed
                 feed = feedparser.parse(response.content)
                 
                 # Проверка на ошибки парсинга
                 if feed.bozo:
-                    print(f"   ⚠️  Bozo error: {feed.bozo_exception}")
+                    logger.warning(f"Feed parsing warning for {podcast_name}: {feed.bozo_exception}")
                     continue
                 
                 # Проверка наличия эпизодов
                 if not feed.entries:
-                    print(f"   ❌ No entries found")
+                    logger.warning(f"No entries found in feed: {podcast_name}")
                     continue
                 
-                print(f"   ✅ Success: {len(feed.entries)} episodes")
+                logger.info(f"Found {len(feed.entries)} episodes in {podcast_name}")
                 
                 # Обработка первых 10 эпизодов
+                new_count = 0
                 for entry in feed.entries[:10]:
                     episode = {
-
                         'podcast_id': podcast_id,
-                        'podcast_name': podcast_data['name'],
-                        'category': podcast_data['category'],
+                        'podcast_name': podcast_name,
+                        'category': category,
                         'title': entry.get('title', 'No title'),
                         'published': entry.get('published', ''),
                         'description': entry.get('summary', '')[:200],
@@ -110,23 +134,23 @@ def fetch_new_episodes():
                         episode['duration'] = entry.itunes_duration
                     
                     if not DB.episode_exist(podcast_id=episode['podcast_id'], podcast_title=episode['title']):
-
                         new_episodes.append(episode)
-                        DB.save_episode(podcast_id=podcast_id, podcast_title=episode['title'],
+                        DB.save_episode(podcast_id=podcast_id, podcast_name=podcast_name, podcast_title=episode['title'],
                                         category=episode['category'], published=False,
                                         audio_url=episode['audio_url'], duration=episode['duration'])
-                    
-                        # Вывод для дебага
-                        print(f"      • {entry.title[:60]}...")
+                        new_count += 1
+                        logger.debug(f"New episode saved: {entry.title[:60]}...")
+                
+                logger.info(f"Added {new_count} new episodes from {podcast_name}")
                 
             except requests.exceptions.HTTPError as e:
-                print(f"   ❌ HTTP Error: {e}")
+                logger.error(f"HTTP Error fetching {podcast_name}: {e}", exc_info=True)
             except requests.exceptions.ConnectionError as e:
-                print(f"   ❌ Connection Error: {e}")
+                logger.error(f"Connection Error fetching {podcast_name}: {e}", exc_info=True)
             except requests.exceptions.Timeout:
-                print(f"   ❌ Timeout")
+                logger.error(f"Timeout fetching {podcast_name}")
             except Exception as e:
-                print(f"   ❌ Unexpected error: {type(e).__name__}: {e}")
+                logger.error(f"Unexpected error fetching {podcast_name}: {type(e).__name__}: {e}", exc_info=True)
     
-    print(f"\n\n📊 Total episodes fetched: {len(new_episodes)}")
+    logger.info(f"Total new episodes fetched: {len(new_episodes)}")
     return new_episodes

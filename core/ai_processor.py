@@ -12,6 +12,8 @@ def transcribe_audio(audio_path: str) -> str:
         Transcribes EN audio
     """
     
+    print(f"[DEBUG] transcribe_audio called with audio_path: {audio_path}")
+    
     model = whisper.load_model('base.en')
 
     result = model.transcribe(
@@ -19,6 +21,11 @@ def transcribe_audio(audio_path: str) -> str:
         word_timestamps=True
     )
 
+    print(f"[DEBUG] Whisper result type: {type(result)}")
+    print(f"[DEBUG] Whisper result keys: {result.keys() if isinstance(result, dict) else 'N/A'}")
+    print(f"[DEBUG] Whisper result['text'] type: {type(result.get('text')) if isinstance(result, dict) else 'N/A'}")
+    print(f"[DEBUG] Whisper result['text'] is None: {result.get('text') is None if isinstance(result, dict) else 'N/A'}")
+    
     return result['text']
 
 def summarize_huggingface(transcript: str, episode_title: str) -> str:
@@ -59,6 +66,10 @@ def summarize_huggingface(transcript: str, episode_title: str) -> str:
     return response["choices"][0]["message"]["content"]
 
 def summarize_groq(transcript: str, episode_title: str) -> str:
+    print(f"[DEBUG] summarize_groq called with transcript length: {len(transcript) if transcript else 0}")
+    print(f"[DEBUG] transcript is None: {transcript is None}")
+    print(f"[DEBUG] transcript is empty string: {transcript == ''}")
+    
     prompt = f"""Ты — редактор подкаст-дайджестов на русском языке.
             Эпизод: {episode_title}
             Транскрипт:
@@ -71,6 +82,7 @@ def summarize_groq(transcript: str, episode_title: str) -> str:
             Формат ответа должен быть удобен для публикации в Telegram.
         """
 
+    print(f"[DEBUG] Sending request to Groq API...")
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
         headers={
@@ -94,6 +106,10 @@ def summarize_groq(transcript: str, episode_title: str) -> str:
         }
     )
 
+    print(f"[DEBUG] Groq API response status: {response.status_code}")
+    if response.status_code != 200:
+        print(f"[DEBUG] Groq API error response: {response.text}")
+    
     if response.status_code == 200:
         return response.json()['choices'][0]['message']['content']
     return None
